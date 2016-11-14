@@ -24,6 +24,8 @@ Requirements
 ------------
 
 * Ansible >2.0
+* Python2/3 on target host
+* Generic UNIX with FHS
 
 Role Variables
 --------------
