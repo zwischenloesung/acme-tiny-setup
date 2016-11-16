@@ -7,45 +7,9 @@ galaxy_info:
   min_ansible_version: 2.0.0
   #github_branch:
   platforms:
-  - name: OpenBSD
-    versions:
-    - all
-  - name: Fedora
-    versions:
-    - all
-  - name: GenericBSD
-    versions:
-    - all
-  - name: Void Linux
-    versions:
-    - all
-  - name: GenericLinux
-    versions:
-    - all
-  - name: ArchLinux
-    versions:
-    - all
-  - name: FreeBSD
-    versions:
-    - all
-  - name: Ubuntu
-    versions:
-    - all
   - name: Debian
     versions:
-    - all
-  - name: opensuse
-    versions:
-    - all
-  - name: SLES
-    versions:
-    - all
-  - name: GenericUNIX
-    versions:
-    - all
-  - name: Solaris
-    versions:
-    - all
+    - jessie
 
   galaxy_tags:
     - acme:acme-tiny:acmetiny
