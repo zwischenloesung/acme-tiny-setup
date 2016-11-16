@@ -17,6 +17,7 @@ app__acme__tiny__cert_name: '{{ app__acme__tiny__domain[0]
                               not app__acme__tiny__domain is string)
                           else app__acme__tiny__domain }}'
 
+app__acme__tiny__log_dir: '/var/log/acme-tiny'
 app__acme__tiny__cert_dir: '{{ app__acme__tiny__config_dir }}/{{ app__acme__tiny__cert_name }}'
 
 app__acme__tiny__key: '{{ app__acme__tiny__config_dir }}/{{ app__acme__tiny__cert_name }}.key'

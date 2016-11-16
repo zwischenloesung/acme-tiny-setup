@@ -34,13 +34,6 @@
     - '{{ app__acme__tiny__log_dir }}'
     - '{{ app__acme__tiny__cert_dir }}'
 
-- name: Account key permissions
-  file:
-    path: '{{ app__acme__tiny__config_dir }}/{{ app__acme__tiny__account_key }}'
-    owner: 'root'
-    group: '{{ app__acme__tiny__group }}'
-    mode: '0640'
-
 - name: Download letsencrypt CA and intermediate certificates
   get_url:
     url: '{{ item.url }}'
@@ -50,10 +43,17 @@
     mode: '0644'
   with_items: '{{ app__acme__tiny__letsencrypt_certs }}'
 
+#- name: Account key permissions
+#  file:
+#    path: '{{ app__acme__tiny__config_dir }}/{{ app__acme__tiny__account_key }}'
+#    owner: 'root'
+#    group: '{{ app__acme__tiny__group }}'
+#    mode: '0640'
+
 - name: Private key
-  shell: /usr/bin/openssl genrsa '{{ app__acme__tiny__key_length }}' > '{{ app__acme__tiny__key }}'
+  shell: "umask 027 && /usr/bin/openssl genrsa '{{ app__acme__tiny__key_length }}' > '{{ app__acme__tiny__key }}'"
   args:
-    creates: '{{ acme_tiny__key }}'
+    creates: '{{ app__acme__tiny__key }}'
 
 - name: Private key permissions
   file:
