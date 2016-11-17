@@ -32,8 +32,23 @@ Requirements
 Role Variables
 --------------
 
-* app\_\_acme\_\_tiny\_\_user (optional, string: default="acme")
-* app\_\_acme\_\_tiny\_\_group (optional, string: default="acme")
+* app\_\_acme\_\_tiny\_\_user - optional, string: default='acme'
+* app\_\_acme\_\_tiny\_\_group - optional, string: default='acme'
+* app\_\_acme\_\_tiny\_\_home - optional, string: default='/var/lib/acme'
+* app\_\_acme\_\_tiny\_\_config\_dir - optional, string: default='/etc/ssl/acme-tiny'
+* app\_\_acme\_\_tiny\_\_openssl\_config - optional, string: default='/etc/ssl/openssl.cnf'
+* app\_\_acme\_\_tiny\_\_challenge\_dir - optional, string: default='/var/www/acme-challenges'
+* app\_\_acme\_\_tiny\_\_account\_key - optional, string: default='account.key'
+* app\_\_acme\_\_tiny\_\_domain - optional, string: default='example.com'
+* app\_\_acme\_\_tiny\_\_cert\_name - optional, string: auto
+* app\_\_acme\_\_tiny\_\_log\_dir - optional, string: default='/var/log/acme-tiny'
+* app\_\_acme\_\_tiny\_\_cert\_dir - optional, string: auto
+* app\_\_acme\_\_tiny\_\_key - optional, string: auto
+* app\_\_acme\_\_tiny\_\_request - optional, string: auto
+* app\_\_acme\_\_tiny\_\_letsencrypt\_certs - optional, string: default=
+ * url: 'https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem', file: 'intermediate.crt'
+ * url: 'https://letsencrypt.org/certs/isrgrootx1.pem', file: 'ca.crt'
+* app\_\_acme\_\_tiny\_\_key\_length - optional, string: default=4096
 
 Dependencies
 ------------

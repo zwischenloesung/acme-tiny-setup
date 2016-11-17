@@ -32,3 +32,6 @@ app__acme__tiny__letsencrypt_certs:
 
 app__acme__tiny__key_length: 4096
 
+
+## quick and dirty way to produce the role vars for the README:
+#$ cat acme-tiny-setup/defaults/main.yml | grep -v "#" | awk 'BEGIN{meta="default="}; {if (match($1, "app.*")) { if (sub(".*{{.*", "", $2)){meta="auto"} else {meta="default="$2}; gsub("_", "\\_"); sub(":", "", $1); print "* "$1" - optional, string: "meta""} else {print $0}}' | grep -v -e "\*  - optional, string: default=" -e " *if" -e " *not" -e " *else" -e "^$"
