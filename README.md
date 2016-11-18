@@ -1,7 +1,7 @@
 Acme-Tiny Setup
 ===============
 
-This is an ansible role for setting up ACME and everything that is required for Let's encrypt. It is highly influenced by this role: ganto.acme\_tiny. Many thanks ganto!
+This is an ansible role for setting up ACME and everything that is required for Let's encrypt. It is highly influenced by this role: ganto.acme\_tiny. Many thanks [ganto](https://linuxmonk.ch/)!
 
 Why we do not use one of the existing roles?
 
