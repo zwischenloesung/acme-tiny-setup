@@ -22,7 +22,7 @@
     group: 'root'
     mode: '0755'
 
-- name: Certificate, challenge and logging directory
+- name: Certificate and logging directory
   file:
     path: '{{ item }}'
     state: directory
@@ -30,9 +30,16 @@
     group: '{{ app__acme__tiny__group }}'
     mode: '0755'
   with_items:
-    - '{{ app__acme__tiny__challenge_dir }}'
     - '{{ app__acme__tiny__log_dir }}'
     - '{{ app__acme__tiny__cert_dir }}'
+
+- name: Challenge directory
+  file:
+    path: '{{ app__acme__tiny__challenge_dir }}'
+    state: directory
+    owner: '{{ app__acme__tiny__user }}'
+    group: '{{ app__acme__tiny__group }}'
+    mode: '0775'
 
 - name: Download letsencrypt CA and intermediate certificates
   get_url:
@@ -43,15 +50,20 @@
     mode: '0644'
   with_items: '{{ app__acme__tiny__letsencrypt_certs }}'
 
-#- name: Account key permissions
-#  file:
-#    path: '{{ app__acme__tiny__config_dir }}/{{ app__acme__tiny__account_key }}'
-#    owner: 'root'
-#    group: '{{ app__acme__tiny__group }}'
-#    mode: '0640'
+- name: Account key
+  shell: "umask 027 && /usr/bin/openssl genrsa '{{ app__acme__tiny__key_length }}' > '{{ app__acme__tiny__account_key }}'"
+  args:
+    creates: '{{ app__acme__tiny__account_key }}'
+
+- name: Account key permissions
+  file:
+    path: '{{ app__acme__tiny__account_key }}'
+    owner: 'root'
+    group: '{{ app__acme__tiny__group }}'
+    mode: '0640'
 
 - name: Private key
-  shell: "umask 027 && /usr/bin/openssl genrsa '{{ app__acme__tiny__key_length }}' > '{{ app__acme__tiny__key }}'"
+  shell: "umask 077 && /usr/bin/openssl genrsa '{{ app__acme__tiny__key_length }}' > '{{ app__acme__tiny__key }}'"
   args:
     creates: '{{ app__acme__tiny__key }}'
 
@@ -59,8 +71,8 @@
   file:
     path: '{{ app__acme__tiny__key }}'
     owner: 'root'
-    group: '{{ app__acme__tiny__group }}'
-    mode: '0640'
+    group: 'root'
+    mode: '0600'
 
 - name: Certificate request
   shell: '/usr/bin/openssl req -new -sha256 -key {{ app__acme__tiny__key }} -subj "/CN={{ app__acme__tiny__domain }}" > {{ app__acme__tiny__request }}'
