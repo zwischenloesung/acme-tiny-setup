@@ -1,7 +1,9 @@
 Acme-Tiny Setup
 ===============
 
-This is an ansible role for setting up ACME and everything that is required for Let's encrypt. It is highly influenced by this role: ganto.acme\_tiny. Many thanks [ganto](https://linuxmonk.ch/)!
+This is an ansible role for setting up and preparing everything that is required for later signing certificates with let's encrypt. It is highly influenced by this role: ganto.acme\_tiny. Many thanks [ganto](https://linuxmonk.ch/)!
+
+This role is meant to be run on any host that needs certificates. If the host is not accessible via web - or does not use the zwischenloesung.acme-tiny role for other reasons - a solution must be provided to transfer the cert-request forth and the final certificate back from this host to the acme-host.
 
 Why we do not use one of the existing roles?
 
