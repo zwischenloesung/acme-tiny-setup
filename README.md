@@ -13,7 +13,7 @@ Why we do not use one of the existing roles?
 Promise
 -------
 
-Sure this role may change in the future, but we will only expand features to not break backwards compatibility.
+Sure, this role may change in the future, but we will only expand features to not break backwards compatibility.
 
 If radical changes should become necessary, a new role will be created, probably with an 'ng' or version suffix...
 
