@@ -14,15 +14,18 @@
     home: '{{ app__acme__tiny__home }}'
     createhome: yes
 
-- name: Configuration directory
+- name: Configuration and certificate directories
   file:
-    path: '{{ app__acme__tiny__config_dir }}'
+    path: '{{ item }}'
     state: directory
     owner: 'root'
     group: 'root'
     mode: '0755'
+  with_items:
+    - '{{ app__acme__tiny__config_dir }}'
+    - '{{ app__acme__tiny__cert_dir }}'
 
-- name: Certificate and logging directory
+- name: Challenge and logging directory
   file:
     path: '{{ item }}'
     state: directory
@@ -31,15 +34,7 @@
     mode: '0755'
   with_items:
     - '{{ app__acme__tiny__log_dir }}'
-    - '{{ app__acme__tiny__cert_dir }}'
-
-- name: Challenge directory
-  file:
-    path: '{{ app__acme__tiny__challenge_dir }}'
-    state: directory
-    owner: '{{ app__acme__tiny__user }}'
-    group: '{{ app__acme__tiny__group }}'
-    mode: '0775'
+    - '{{ app__acme__tiny__challenge_dir }}'
 
 - name: Download letsencrypt CA and intermediate certificates
   get_url:
