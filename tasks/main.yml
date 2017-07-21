@@ -40,8 +40,8 @@
   get_url:
     url: '{{ item.url }}'
     dest: '{{ app__acme__tiny__config_dir }}/{{ item.file }}'
-    owner: 'root'
-    group: 'root'
+    owner: 'acme'
+    group: 'acme'
     mode: '0644'
   with_items: '{{ app__acme__tiny__letsencrypt_certs }}'
 
