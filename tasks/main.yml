@@ -69,13 +69,18 @@
     group: 'root'
     mode: '0600'
 
-- name: Certificate request
+- name: Remove any existing certificate request
+  file:
+    path: '{{ app__acme__tiny__request }}'
+    state: 'absent'
+
+- name: Create a new simple certificate request
   shell: '/usr/bin/openssl req -new -sha256 -key {{ app__acme__tiny__key }} -subj "/CN={{ app__acme__tiny__domain }}" > {{ app__acme__tiny__request }}'
   args:
     creates: '{{ app__acme__tiny__request }}'
   when: app__acme__tiny__domain is string
 
-- name: Multi-domain certificate request
+- name: Create a new multi-domain certificate request
   shell: '/usr/bin/openssl req -new -sha256 -key {{ app__acme__tiny__key }} -subj "/" -reqexts SAN -config <(cat {{ app__acme__tiny__openssl_config }} <(printf "[SAN]\nsubjectAltName=DNS:{{ app__acme__tiny__domain | join(",DNS:") }}")) > {{ app__acme__tiny__request }}'
   args:
     executable: '/bin/bash'
