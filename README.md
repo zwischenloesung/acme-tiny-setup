@@ -10,6 +10,12 @@ Why we do not use one of the existing roles?
 * For the first reason read the section "Promise" below. We need something reliable.
 * This role will be used by [maestro](https://github.com/inofix/maestro) and must follow the logic used there. (Of course, the role can be used without maestro..)
 
+STATUS
+------
+
+Development has moved to inofix.acme-\*
+
+
 Promise
 -------
 
